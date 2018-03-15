@@ -1,0 +1,59 @@
+<div id="dusupay-btn">
+  <a style="cursor: pointer;">
+    <!-- <img src="https://dusupay.com/img/paybuttons/dusupaybtn4.png" /> -->
+    <button type="button" name="button" class="btn next2">Click Here to Donate</button>
+  </a>
+</div>
+<script type="text/javascript">
+function gup( name, url ) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( url );
+    return results == null ? null : results[1];
+}
+</script>
+<script
+dusupay_merchantId="1833"
+dusupay_amount= 0
+dusupay_currency="XAF"
+dusupay_itemId="4"
+dusupay_itemName="Donation"
+dusupay_transactionReference= 0
+dusupay_render="widget"
+dusupay_logo= "https://fundandimpact.com/src/assets/logo.png"
+dusupay_redirectURL="https://backend-fundandimpact.com/api/dusu_donated"
+dusupay_successURL="https://backend-fundandimpact.com/api/dusu_donated"
+id="dusupay" type="text/javascript" async=true>
+
+var dusu = document.getElementById('dusupay');
+dusu.setAttribute('dusupay_amount', gup('amount'));
+dusu.setAttribute('dusupay_transactionReference', gup('id'));
+document.write(unescape('%3Cscript src="' +
+    (("https:" == document.location.protocol) ? "https://dusupay.com" : "http://dusupay.com") +
+  '/js/widgets.js" type="text/javascript"%3E%3C/script%3E'
+));
+</script>
+
+<style media="screen">
+.next2{
+  background: #F5A409;
+  border-radius: 5px;
+  border-bottom: 3px solid #E2960B;
+  color: #fff !important;
+  float: left;
+  font-family: montserrat, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  height: 55px;
+  padding-top: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #8C4600 !important;
+  text-decoration: none !important;
+  min-width: 55px;
+  cursor: pointer;
+}
+</style>

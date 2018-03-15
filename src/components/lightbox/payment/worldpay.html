@@ -1,0 +1,30 @@
+<script src="https://cdn.worldpay.com/v1/worldpay.js"></script>
+<script type='text/javascript'>
+  window.onload = function() {
+    Worldpay.useTemplateForm({
+      'clientKey': 'T_C_3ff95365-2c7e-49c1-b209-3fefeecbcabc',
+      'form': 'paymentForm',
+      'paymentSection': 'paymentSection',
+      'display': 'inline',
+      'reusable': true,
+      'callback': function(obj) {
+        if (obj && obj.token) {
+          var _el = document.createElement('input');
+          _el.value = obj.token;
+          _el.type = 'hidden';
+          _el.name = 'token';
+          document.getElementById('paymentForm').appendChild(_el);
+          document.getElementById('paymentForm').submit();
+        }
+      }
+    });
+  }
+</script>
+
+<form action="http://localhost:5000/api/payment/worldpay" id="paymentForm" method="post">
+  <!-- all other fields you want to collect, e.g. name and shipping address -->
+  <div id='paymentSection'></div>
+  <div>
+    <input type="submit" class="btn next2" value="Donate Now" onclick="Worldpay.submitTemplateForm()" />
+  </div>
+</form>
